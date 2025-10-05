@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-     <p>Hello Movie Box </p>
+     <p className='text-red-700 text-base'>Hello Movie Box Place Holder</p>
     </>
   )
 }
