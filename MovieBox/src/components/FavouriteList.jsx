@@ -1,7 +1,12 @@
+import NavBar from "./NavBar";
+
+
 function Favourite() {
-    return (  
+    return ( 
+    
         <>
-        <h1>This is the favourite page</h1>
+         <NavBar />
+        <h1>This is the favourite page </h1>
         </>
     );
 }
