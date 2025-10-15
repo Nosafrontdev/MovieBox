@@ -20,7 +20,7 @@ function MovieList() {
         </section>   
         {isError && <p> Something went wrong </p>}
         {isLoading && <p> Loading --------</p>}
-        {data?.results?.map((movie) => <p key= {movie.id}> {movie.poster_path} </p>
+        {data?.results?.map((movie) => <img key= {movie.id} src = {`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
     )}
         </>
     );
