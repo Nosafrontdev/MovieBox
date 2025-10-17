@@ -11,18 +11,25 @@ function MovieList() {
         }, staleTime: 5000,
     });
     return (  
-        < >
-        <section className='bg-gray-900'>
-        <h1 className='bg-red-900 text-white'> Trending Movies</h1>
-        <a href=''>
-            <img src='https://www.movieposters.com/cdn/shop/files/hocuspocus.24x36.jpg?v=1708452563&width=250 ' alt='image'></img>
-            </a>  
-        </section>   
-        {isError && <p> Something went wrong </p>}
-        {isLoading && <p> Loading --------</p>}
-        {data?.results?.map((movie) => <img key= {movie.id} src = {`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+    
+        <section className='bg-gray-900 py-6 px-4 min-h-screen'>
+        <h1 className='text-3x1 font-bold text-white mb-6'> Trending Movies</h1>
+        {isError && <p className='text-red-500'> Something went wrong </p>}
+        {isLoading && <p className='text-white'> Loading --------</p>}
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg: grid-cols-5 xl:grid-cols-6 gap-4'> 
+        {data?.results?.map((movie) => 
+        < div key={movie.id} 
+        className='overfolow-hidden rounded-lg shadow-md hover:scale-105 hover:shadow-xl transition-transform duration-300 cursor-pointer'>
+        <img 
+        className="w-full h-full object-cover"
+        src = {`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+        alt={movie.title}
+
+        />
+        </div>
     )}
-        </>
+        </div>
+        </section>
     );
 }
 
