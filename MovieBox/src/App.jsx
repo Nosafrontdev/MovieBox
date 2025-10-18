@@ -1,5 +1,6 @@
 
 import './App.css'
+import FooterPage from './components/FooterPage';
 import MovieList from './components/MovieList';
 import NavBar from './components/NavBar';
 
@@ -11,6 +12,7 @@ function App() {
     <div>
      <NavBar />
      <MovieList />
+     <FooterPage />
     </div>
   );
 }
