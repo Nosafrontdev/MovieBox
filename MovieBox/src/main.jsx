@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import Favourite from './components/FavouriteList.jsx'
 import SearchBar from './components/SearchBar.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import MovieDetails from './components/MovieDetails.jsx'
 
 const queryClient = new QueryClient()
 
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([{
 {
    path:'/search',
    Component: SearchBar
+},
+{
+   path:'/movie/:id',
+   Component: MovieDetails
 }
 
 ])
