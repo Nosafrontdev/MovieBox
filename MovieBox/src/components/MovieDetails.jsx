@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import NavBar from "./NavBar";
+import FooterPage from "./FooterPage";
 
 
 function MovieDetails() {   
@@ -56,6 +57,7 @@ function MovieDetails() {
           </div>
         )}
       </div>
+      <FooterPage />
     </>
   );
 }
