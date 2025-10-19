@@ -80,7 +80,7 @@ function SearchBar() {
         )}
 
         {!searchItem && (
-          <p className="text-center text-gray-400 mt-10">
+          <p className="text-center text-white-400 mt-10">
              search for movies
           </p>
         )}

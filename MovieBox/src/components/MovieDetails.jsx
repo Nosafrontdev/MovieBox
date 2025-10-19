@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import NavBar from "./NavBar";
 import FooterPage from "./FooterPage";
+import { useFavouriteStore } from "../store/favouriteStore";
 
 
 function MovieDetails() {   
@@ -15,6 +16,19 @@ function MovieDetails() {
             return res.json();
         }, staleTime: 5000,
     });
+     const { data: trailerData } = useQuery({
+  queryKey: ['trailer', id],
+  queryFn: async () => {
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=b7c7d3158679562cb5e5447d7b2e0b20`);
+    if (!res.ok) throw new Error('Failed to fetch trailer');
+    return res.json();
+  },
+  staleTime: 5000,
+});
+       const addFavourite = useFavouriteStore((state) => state.addFavourite);
+       const trailer = trailerData?.results?.find(
+  (vid) => vid.type === "Trailer" && vid.site === "YouTube"
+);
     return (  
         <>
         <NavBar />
@@ -46,13 +60,32 @@ function MovieDetails() {
                 Movie Rating: { data.vote_average}
             </p>
          <div className="flex flex-col sm:flex-row gap-4 mt-6">
-                <button className="px-6 py-3 bg-yellow-500 text-black font-bold rounded-xl shadow-md hover:bg-yellow-400 transition-colors duration-200">
-                  Download
-                </button>
-                <button className="px-6 py-3 bg-red-600 font-bold rounded-xl shadow-md hover:bg-red-500 transition-colors duration-200">
-                  Watch Online
-                </button>
-              </div>
+  <button className="px-6 py-3 bg-yellow-500 text-black font-bold rounded-xl shadow-md hover:bg-yellow-400 transition-colors duration-200">
+    Download
+  </button>
+  <button className="px-6 py-3 bg-red-600 font-bold rounded-xl shadow-md hover:bg-red-500 transition-colors duration-200">
+    Watch Online
+  </button>
+  {trailer && (
+    <a
+      href={`https://www.youtube.com/watch?v=${trailer.key}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="px-6 py-3 bg-blue-600 font-bold rounded-xl shadow-md hover:bg-blue-500 transition text-center"
+    >
+      Watch Trailer
+    </a>
+  )}
+  <button
+    onClick={() => {
+      addFavourite(data);
+      window.alert('Movie added to favourite');
+    }}
+    className="px-6 py-3 bg-green-600 font-bold rounded-xl shadow-md hover:bg-green-500 transition"
+  >
+    Add to Favourites
+  </button>
+</div>
             </div>
           </div>
         )}
