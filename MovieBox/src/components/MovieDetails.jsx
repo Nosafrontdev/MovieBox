@@ -56,9 +56,9 @@ function MovieDetails() {
             </p>
             </div>
 
-            <p className="text-lg font-semibold text-yellow-300"> 
-                Movie Rating: { data.vote_average}
-            </p>
+            <p><span className="font-semibold text-yellow-300">Release Date:</span> {data.release_date || 'N/A'}</p>
+                <p><span className="font-semibold text-yellow-300">Genre:</span> {data.genres?.map((g) => g.name).join(', ') || 'N/A'}</p>
+                <p><span className="font-semibold text-yellow-300">Rating:</span> {data.vote_average}</p>
          <div className="flex flex-col sm:flex-row gap-4 mt-6">
   <button className="px-6 py-3 bg-yellow-500 text-black font-bold rounded-xl shadow-md hover:bg-yellow-400 transition-colors duration-200">
     Download
